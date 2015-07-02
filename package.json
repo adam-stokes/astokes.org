@@ -1,0 +1,19 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "description": "blog theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/battlemidget/theme.git"
+  },
+  "author": "adam stokes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/battlemidget/theme/issues"
+  },
+  "homepage": "https://github.com/battlemidget/theme#readme"
+}

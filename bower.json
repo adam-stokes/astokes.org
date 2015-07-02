@@ -1,0 +1,24 @@
+{
+  "name": "bummyjab",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/battlemidget/bummyjab",
+  "authors": [
+    "Adam Stokes <adam.stokes@ubuntu.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "bootswatch": "~3.3.4",
+    "flowtype": "~1.1.0",
+    "highlightjs": "~8.5.0"
+  }
+}

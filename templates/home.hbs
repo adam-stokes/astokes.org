@@ -1,0 +1,15 @@
+{{> header}}
+<div class="col-md-12">
+  <h1 class="page-header"><img src="{{link 'images/logo.png'}}" class="img-rounded img-responsive center-block"> Adam Stokes</h1>
+  {{#each .}}
+    <div class="row">
+      <div class="col-md-12">
+        <h2><a href="{{link this.permalink}}">{{this.title}}</a> <small>tags: {{this.tags}}</small></h2>
+        <date class="date">
+          {{date this.date}}
+        </date>
+      </div>
+    </div>
+  {{/each}}
+</div>
+{{> footer}}
