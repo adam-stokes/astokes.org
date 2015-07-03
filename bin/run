@@ -2,3 +2,4 @@
 
 ./bin/build-assets.zsh &
 genc --config config ~/Dropbox/Articles
+browser-sync start --files "build/*, build/**/*" --server build
