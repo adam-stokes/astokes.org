@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "bin/build-assets.zsh",
-    "start": "genc --config config ~/Dropbox/Articles"
+    "start": "bin/run"
   },
   "repository": {
     "type": "git",
