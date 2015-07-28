@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ./bin/build-assets.zsh &
-genc --config config ~/Dropbox/Articles
+./node_modules/.bin/genc build
 browser-sync start --files "build/*, build/**/*" --server build

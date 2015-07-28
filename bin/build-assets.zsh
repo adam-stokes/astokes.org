@@ -2,7 +2,7 @@
 
 LESSC=./node_modules/.bin/lessc
 UGLIFY=./node_modules/.bin/uglifyjs
-lessItems=(src/styles/*.less)
+lessItems=(src/static/styles/*.less)
 cssItems=(
     bower_components/bootswatch/paper/bootstrap.min.css
     bower_components/highlightjs/styles/monokai.css
@@ -12,7 +12,7 @@ jsItems=(
     bower_components/bootstrap/dist/js/bootstrap.js
     bower_components/flowtype/flowtype.js
     bower_components/highlightjs/highlight.pack.js
-    src/js/main.js
+    src/static/js/main.js
 )
 
 echo "Prepping build/"
@@ -23,8 +23,8 @@ $LESSC $lessItems --clean-css build/styles/main.css
 cat $cssItems > build/styles/main.min.css &
 
 echo "Copying static"
-rsync -az src/fonts/* build/fonts/. &
-rsync -az src/images/* build/images/. &
+rsync -az src/static/fonts/* build/fonts/. &
+rsync -az src/static/images/* build/images/. &
 
 echo "Writing javascript files..."
 $UGLIFY $jsItems -o build/js/main.min.js
