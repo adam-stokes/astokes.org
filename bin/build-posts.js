@@ -28,7 +28,7 @@ function saveCollection(config, posts, templateFile, dst){
     return mkdirp("build")
         .then(function() {
             var template = jade.compileFile("templates/" + templateFile);
-            return fs.writeFile(dst, template({site: config, posts: posts}));
+            return fs.writeFile(dst, template(_.merge(config, {posts: posts})));
         });
 }
 
@@ -48,6 +48,8 @@ co(function*(){
     yield saveCollection(config, posts, "index.jade", "build/index.html");
     log.info("Writing feed");
     yield saveCollection(config, posts, "feed.jade", "build/feed.xml");
+    log.info("Writing sitemap");
+    yield saveCollection(config, posts, "sitemap.jade", "build/sitemap.xml");
     return;
 }).catch(function(err){
     throw Error(err);
