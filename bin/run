@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ./bin/build-assets.zsh &
-./node_modules/.bin/genc build
+./bin/build-posts.js
 browser-sync start --files "build/*, build/**/*" --server build

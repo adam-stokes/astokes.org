@@ -1,0 +1,5 @@
+extend indexLayout
+block content
+  ul
+    - each post in posts
+      li <a href="/#{post.permalink}">#{post.title}</a>
