@@ -1,3 +1,8 @@
 <div class="col-md-12">
   <h1 class="page-header">Sup</h1>
+  <ul>
+  {{#each posts}}
+    <li><a href="/blog/">{{this.title}}</a></li>
+  {{/each}}
+  </ul>
 </div>

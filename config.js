@@ -1,7 +1,8 @@
 "use strict";
 
 var config = {
-    "title": "Adam Stokes"
+    "title": "Adam Stokes",
+    "dbaddr": "172.17.0.1"
 };
 
 
