@@ -12,6 +12,7 @@ jsItems=(
     bower_components/bootstrap/dist/js/bootstrap.js
     bower_components/flowtype/flowtype.js
     bower_components/highlightjs/highlight.pack.js
+    bower_components/moment/moment.js
     js/main.js
 )
 
