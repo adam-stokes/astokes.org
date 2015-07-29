@@ -1,5 +1,0 @@
-#!/bin/bash
-
-./bin/build-assets.zsh &
-./bin/build-posts.js
-browser-sync start --files "build/*, build/**/*" --server build
