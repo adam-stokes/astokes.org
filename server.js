@@ -5,8 +5,6 @@ var config = require("./config");
 var server = new Hapi.Server();
 var Yar = require("yar");
 var sprintf = require("sprintf-js").sprintf;
-var utils = require("./utils");
-var _ = require("lodash");
 var Post = require("./models/post");
 var mongoose = require("mongoose");
 mongoose.connect(sprintf("mongodb://10.0.3.151/astokes"));
@@ -57,28 +55,22 @@ server.route({
     path: "/",
     method: "GET",
     handler: function(req, resp) {
-        Post.find().exec()
+        Post.find().limit(10).sort({date: -1}).exec()
             .then(function(posts){
                 resp.view("index",
-                          {posts: _.sortByOrder(posts, ["date"], ["desc"])});
+                          {posts: posts});
             });
     }
 });
 
 server.route({
-    path: "/blog/{year}/{month}/{day}/{pagename}",
+    path: "/blog/{year}/{month}/{day}/{slug}",
     method: "GET",
     handler: function(req, resp) {
-        var year = req.params.year;
-        var month = req.params.month;
-        var day = req.params.day;
-        var pagename = req.params.pagename;
-        var postFile = sprintf("./posts/%s-%s-%s-%s.md", year, month, day, pagename);
-        utils.parseFM(postFile)
+        var slug = req.params.slug;
+        Post.findOne({"slug": slug}).exec()
             .then(function(post){
-                resp.view("post", post);
-            }).catch(function(err){
-                throw Error(err);
+                resp.view("post", {post: post});
             });
     }
 });

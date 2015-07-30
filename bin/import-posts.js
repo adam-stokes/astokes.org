@@ -5,6 +5,7 @@ var join = Promise.join;
 var utils = require("../utils");
 var Post = require("../models/post");
 var expandHome = require("expand-tilde");
+var s = require("string");
 var mongoose = require("mongoose");
 
 mongoose.connect("mongodb://10.0.3.151/astokes");
@@ -13,6 +14,7 @@ utils.collection(expandHome("~/Dropbox/Articles"))
     .map(function(post){
         var model = new Post();
         model.title = post.title;
+        model.slug = s(post.title).slugify().s;
         model.date = post.date;
         model.tags = post.tags;
         model.md = post.body;

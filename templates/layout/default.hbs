@@ -13,11 +13,13 @@
   <link rel="stylesheet" type="text/css" href="/static/css/main.min.css">
   <script src="/static/js/main.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <title>{{ title }}</title>
+  <title>{{ sitetitle }} - {{post.title}}</title>
 </head>
 <body>
   {{>header}}
-  {{{content}}}
+  <div class="container">
+    {{{content}}}
+  </div>
   {{>footer}}
 </body>
 </html>

@@ -4,7 +4,7 @@ LESSC=./node_modules/.bin/lessc
 UGLIFY=./node_modules/.bin/uglifyjs
 lessItems=(less/*.less)
 cssItems=(
-    bower_components/bootswatch/paper/bootstrap.min.css
+    bower_components/bootswatch/united/bootstrap.min.css
     bower_components/highlightjs/styles/monokai.css
     static/css/main.css)
 jsItems=(

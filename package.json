@@ -34,7 +34,9 @@
     "mongoose": "^4.1.0",
     "mz": "^2.0.0",
     "sprintf-js": "^1.0.3",
+    "string": "^3.3.0",
     "uglifyjs": "^2.4.10",
+    "xregexp": "^2.0.0",
     "yar": "^3.0.3"
   },
   "devDependencies": {
