@@ -1,25 +1,16 @@
-<div class="col-md-8">
+<section>
+  <article>
   {{#each posts}}
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2><a href="{{post_path this}}">{{this.title}}</a></h2>
-          {{this.date}} || <span class="label label-info">{{this.tags}}</span>
-        </div>
-        <div class="panel-body post-entry">
-          {{{truncate this.md}}}
-        </div>
-        <div class="panel-footer">
-          <a class="btn btn-info" href="{{post_path this}}">Read More ...</a>
-        </div>
-      </div>
-  </div>
+    <h2><a href="{{post_path this}}">{{this.title}}</a></h2>
+    {{this.date}} || <span>{{this.tags}}</span>
+    <p>
+      {{{truncate this.md}}}
+    </p>
+    <a href="{{post_path this}}">Read More ...</a>
   {{/each}}
-</div>
-<div class="col-md-4">
-  <div class="panel panel-default">
-    <div class="panel-heading">Projects</div>
-    <div class="panel-body">
-      <a class="btn btn-info" role="button" href="http://openstack.astokes.org">Ubuntu OpenStack Installer</a>
-    </div>
-</div>
+  </article>
+  <aside>
+    <h3>Projects</h3>
+    <a href="http://openstack.astokes.org">Ubuntu OpenStack Installer</a>
+  </aside>
+</section>
