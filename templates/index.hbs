@@ -1,15 +1,10 @@
-<section>
-  <article>
-  {{#each posts}}
+<div class="container">
+  <div class="blog-roll">
+    <h1>Bloggo</h1>
+    {{#each posts}}
     <h2 class="article-header"><a href="{{post_path this}}">{{this.title}}</a></h2>
     <span class="article-date-pad-left">Posted on {{pretty this.date}}</span>
-    <div>
-      {{{md this.md}}}
-    </div>
-  {{/each}}
-  </article>
-  <aside>
-    <h3>Projects</h3>
-    <a href="http://openstack.astokes.org">Ubuntu OpenStack Installer</a>
-  </aside>
-</section>
+    {{/each}}
+  </div>
+  {{>sidebar}}
+</div>

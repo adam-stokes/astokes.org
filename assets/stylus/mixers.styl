@@ -8,7 +8,7 @@ padder-right(n)
 // font mixins
 font-code-mixin()
   font-family: font-code
-  font-size: 14px
+  font-size: 1em
 
 font-content-mixin(size = 14px, color = text-default)
   font-family: font-content
@@ -20,29 +20,32 @@ font-brand-mixin(color = text-default, size = 14px)
   font-size size
   color color
 
+font-link-mixin()
+  a
+    font-family font-link
+    font-size 14px
+    font-weight bold
+    text-decoration none
+    color bling
+    &:hover
+      color dark
+
 // circular
 border-radius(n)
   -webkit-border-radius n
   -moz-border-radius n
   border-radius n
 
-// link mixins
-link-default(active = light, hover = bling, weight = bold)
-  text-decoration none
-  &:before
-    content "[ "
-  &:after
-    content " ]"
-  font-content-mixin(16px)
-  font-weight weight
-  color active
-  &:hover
-    color hover
+// alignment
+flexxin()
+  display flex
+  -webkit-box-pack center
+  -webkit-box-align center
+  align-items center
 
-// buttons
-btn-default(radius = 5px)
-  padding 5px
-  background bling
-  color text-default
-  text-align center
-  font-content-mixin(16px)
+vertical-align()
+  flex none
+  -webkit-box-flex 0
+  -webkit-flex none
+  -ms-flex none
+  max-width 50%
