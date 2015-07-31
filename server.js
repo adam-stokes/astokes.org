@@ -80,7 +80,7 @@ server.route({
     method: "GET",
     handler: {
         directory: {
-            path: "./static",
+            path: "./public",
             listing: false,
             index: false
         }

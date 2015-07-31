@@ -3,9 +3,9 @@
   {{#each posts}}
     <h2><a href="{{post_path this}}">{{this.title}}</a></h2>
     {{this.date}} || <span>{{this.tags}}</span>
-    <p>
-      {{{truncate this.md}}}
-    </p>
+    <div>
+      {{{md this.md}}}
+    </div>
     <a href="{{post_path this}}">Read More ...</a>
   {{/each}}
   </article>

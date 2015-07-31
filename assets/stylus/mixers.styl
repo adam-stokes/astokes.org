@@ -1,0 +1,24 @@
+// font mixins
+font-code-mixin()
+  font-family: font-code
+  font-size: 14px
+
+font-content-mixin(size = 14px)
+  font-family: font-content
+  font-size: size
+  color text-default
+
+// link mixins
+link-default()
+  text-decoration none
+
+// buttons
+btn-default(radius = 5px)
+  -webkit-border-radius radius
+  -moz-border-radius radius
+  border-radius radius
+  padding 5px
+  background bling
+  color text-default
+  text-align center
+  font-content-mixin(16px)

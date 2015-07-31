@@ -1,0 +1,37 @@
+@import "nib"
+@import "jeet"
+@import "variables"
+@import "mixers"
+
+body
+  font-conent-mixin(16px)
+  background white
+  padding 0
+  margin 0
+
+pre
+  font-code-mixin()
+
+section
+  font-content-mixin(18px)
+  width 960px
+  margin auto
+
+#header
+  nav
+    background darkest
+    height 70px
+    section
+      font-content-mixin(32px)
+      color bling
+    a
+      link-default()
+      col(1/4)
+      btn-default()
+      &:hover
+        background light
+
+#brand
+  col(2/4)
+  font-content-mixin(48px)
+  font-weight bold
