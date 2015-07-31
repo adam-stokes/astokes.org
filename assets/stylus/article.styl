@@ -1,0 +1,17 @@
+article-date-fn(use-padding = false)
+  font-content-mixin(12px, dark)
+  font-weight bold
+  if use-padding
+    padder-left(15px)
+
+.article-tags
+  font-content-mixin(12px, bling)
+
+.article-date
+  article-date-fn()
+
+.article-date-pad-left
+  article-date-fn(true)
+
+.article-header
+  margin-bottom 0

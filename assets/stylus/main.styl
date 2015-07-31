@@ -2,12 +2,15 @@
 @import "jeet"
 @import "variables"
 @import "mixers"
+@import "article"
 
 body
   font-conent-mixin(16px)
-  background white
+  background url("/static/images/lined_paper_@2X.png") top left repeat
   padding 0
   margin 0
+  a
+    link-default(darker)
 
 pre
   font-code-mixin()
@@ -18,20 +21,25 @@ section
   margin auto
 
 #header
-  nav
-    background darkest
-    height 70px
-    section
-      font-content-mixin(32px)
-      color bling
-    a
-      link-default()
-      col(1/4)
-      btn-default()
-      &:hover
-        background light
+  height 70px
 
 #brand
-  col(2/4)
+  width 960px
+  margin auto
   font-content-mixin(48px)
   font-weight bold
+  color text-invert
+  img
+    border-radius(50px)
+    height 65px
+
+.brand-text
+  font-brand-mixin(size = 16px)
+  width 100px
+  float right
+
+.menu
+  position relative
+  width 200px
+  a
+    link-default()

@@ -1,23 +1,16 @@
 {
-  "name": "theme",
+  "name": "astokes.org",
   "version": "1.0.0",
-  "description": "blog theme",
-  "main": "index.js",
+  "description": "my site",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "gulp",
+    "prestart": "./bin/build",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/battlemidget/theme.git"
-  },
+  "repository": "battlemidget/astokes.org",
   "author": "adam stokes",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/battlemidget/theme/issues"
-  },
-  "homepage": "https://github.com/battlemidget/theme#readme",
   "dependencies": {
     "bluebird": "^2.9.34",
     "expand-tilde": "^1.2.0",
@@ -26,30 +19,22 @@
     "good-console": "^5.0.2",
     "handlebars": "^3.0.3",
     "hapi": "^8.8.0",
-    "less": "^2.5.1",
-    "less-plugin-clean-css": "^1.5.0",
+    "jeet": "^6.1.2",
     "lodash": "^3.10.0",
     "marked": "^0.3.4",
     "moment": "^2.10.3",
     "mongoose": "^4.1.0",
     "mz": "^2.0.0",
     "nib": "^1.1.0",
-    "node-neat": "^1.7.2",
-    "node-sass": "^3.2.0",
     "sprintf-js": "^1.0.3",
     "string": "^3.3.0",
-    "stylus-flatuicolors": "^0.1.1",
+    "stylus": "^0.52.0",
+    "uglifycss": "0.0.15",
     "uglifyjs": "^2.4.10",
     "xregexp": "^2.0.0",
     "yar": "^3.0.3"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-cssmin": "^0.1.7",
-    "gulp-nodemon": "^2.0.3",
-    "gulp-sass": "^2.0.4",
-    "gulp-uglify": "^1.2.0",
     "mocha": "^2.2.5"
   }
 }

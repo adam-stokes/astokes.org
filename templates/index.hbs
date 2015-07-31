@@ -1,12 +1,11 @@
 <section>
   <article>
   {{#each posts}}
-    <h2><a href="{{post_path this}}">{{this.title}}</a></h2>
-    {{this.date}} || <span>{{this.tags}}</span>
+    <h2 class="article-header"><a href="{{post_path this}}">{{this.title}}</a></h2>
+    <span class="article-date-pad-left">Posted on {{pretty this.date}}</span>
     <div>
       {{{md this.md}}}
     </div>
-    <a href="{{post_path this}}">Read More ...</a>
   {{/each}}
   </article>
   <aside>
