@@ -55,10 +55,19 @@ server.route({
     path: "/",
     method: "GET",
     handler: function(req, resp) {
-        Post.find().limit(10).sort({date: -1}).exec()
+        var ctx = {};
+        Post.find().limit(35).sort({date: -1}).exec()
             .then(function(posts){
-                resp.view("index",
-                          {posts: posts});
+                ctx.posts = posts;
+                return;
+            }).then(function(){
+                return Post.getUniqueYears()
+                    .then(function(years){
+                        console.log(years);
+                        ctx.years = years;
+                    });
+            }).then(function(){
+                resp.view("index", ctx);
             });
     }
 });

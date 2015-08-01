@@ -1,8 +1,18 @@
 <div class="sidebar">
-  <h1>Projects</h1>
-  <a href="http://openstack.astokes.org">Ubuntu OpenStack Installer</a>
+  <h1>Current Projects</h1>
+  <ul>
+    <li><a href="http://openstack.astokes.org">Ubuntu OpenStack Installer</a></li>
+    <li><a href="https://github.com/sosreport/sos">SOSreport</a></li>
+  </ul>
   <h1>Resources</h1>
-  <a href="http://jujucharms.com">Juju</a>
-  <a href="http://maas.ubuntu.com">MAAS</a>
+  <ul>
+    <li><a href="http://jujucharms.com">Juju</a></li>
+    <li><a href="http://maas.ubuntu.com">MAAS</a></li>
+  </ul>
   <h1>Archives</h1>
+  <ul>
+  {{#each years}}
+    <li>{{this._id.year}}</li>
+  {{/each}}
+  </ul>
 </div>
