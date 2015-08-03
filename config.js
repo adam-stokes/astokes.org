@@ -1,7 +1,9 @@
 "use strict";
 
 var config = {
-    "sitetitle": "Adam Stokes"
+    "siteTitle": "Adam Stokes",
+    "siteDescription": "Bumblebee Tuna",
+    "siteBaseUrl": "http://astokes.org"
 };
 
 

@@ -11,8 +11,9 @@
   </ul>
   <h1>Archives</h1>
   <ul>
-  {{#each years}}
-    <li>{{this._id.year}}</li>
+    {{#each archiveYears}}
+      {{log this}}
+    <li><a href="/archives/{{this._id.year}}">{{this._id.year}}</a></li>
   {{/each}}
   </ul>
 </div>

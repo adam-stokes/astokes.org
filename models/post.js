@@ -1,5 +1,6 @@
 "use strict";
 
+var moment = require("moment");
 var Mongoose = require("mongoose");
 
 var postSchema = new Mongoose.Schema({
@@ -38,6 +39,20 @@ postSchema.statics.getUniqueYears = function (){
             }
             return results;
         });
+};
+
+postSchema.statics.findByYear = function (year, cb){
+    var currentYear = year;
+    var nextYear = moment(currentYear).add(1, "years").toDate();
+    console.log("Current: %s, Next: %s", currentYear, nextYear);
+    return this.find({date: {
+        $gte: currentYear,
+        $lt: nextYear
+    }}, cb);
+};
+
+postSchema.statics.findByTag = function (name, cb){
+    return this.find({tags: new RegExp(name, "i")}, cb);
 };
 
 var post = Mongoose.model("post", postSchema);

@@ -1,10 +1,12 @@
 "use strict";
+var Promise = require("bluebird");
 var Hapi = require("hapi");
 var Good = require("good");
 var config = require("./config");
 var server = new Hapi.Server();
 var Yar = require("yar");
 var sprintf = require("sprintf-js").sprintf;
+var moment = require("moment");
 var Post = require("./models/post");
 var mongoose = require("mongoose");
 mongoose.connect(sprintf("mongodb://10.0.3.151/astokes"));
@@ -40,7 +42,13 @@ server.views({
     layout: "default",
     helpersPath: "./templates/helpers",
     partialsPath: "./templates/partials",
-    context: config
+    context: {
+        site: config,
+        archiveYears: Promise.resolve(Post.getUniqueYears()
+                                      .then(function(posts){
+                                          return posts;
+                                      }))
+    }
 });
 
 server.route({
@@ -54,20 +62,11 @@ server.route({
 server.route({
     path: "/",
     method: "GET",
-    handler: function(req, resp) {
-        var ctx = {};
-        Post.find().limit(35).sort({date: -1}).exec()
+    handler: function(request, reply) {
+        var currentYear = moment().startOf("year").toDate();
+        Post.findByYear(currentYear).sort({date: -1}).exec()
             .then(function(posts){
-                ctx.posts = posts;
-                return;
-            }).then(function(){
-                return Post.getUniqueYears()
-                    .then(function(years){
-                        console.log(years);
-                        ctx.years = years;
-                    });
-            }).then(function(){
-                resp.view("index", ctx);
+                return reply.view("index", {posts: posts});
             });
     }
 });
@@ -75,11 +74,37 @@ server.route({
 server.route({
     path: "/blog/{year}/{month}/{day}/{slug}",
     method: "GET",
-    handler: function(req, resp) {
-        var slug = req.params.slug;
+    handler: function(request, reply) {
+        var slug = request.params.slug;
         Post.findOne({"slug": slug}).exec()
             .then(function(post){
-                resp.view("post", {post: post});
+                reply.view("post", {post: post});
+            });
+    }
+});
+
+server.route({
+    path: "/feed/{tag}",
+    method: "GET",
+    handler: function(request, reply) {
+        var tag = request.params.tag;
+        Post.findByTag(tag).sort({date: -1}).exec()
+            .then(function(posts){
+                var response = reply.view("feed", {posts: posts, updated: posts[0].date}, {layout: false});
+                response.type("application/xml");
+            });
+    }
+});
+
+
+server.route({
+    path: "/archives/{year}",
+    method: "GET",
+    handler: function(request, reply) {
+        var year = moment(request.params.year + "-01-01").toDate();
+        Post.findByYear(year).exec()
+            .then(function(posts){
+                return reply.view("archives", {posts: posts});
             });
     }
 });

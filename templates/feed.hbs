@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-        <channel>
-            <title>{{ site.sitename }}</title>
-            <description>{{ site.description }}</description>
-            <link>{{ site.baseUrl }}</link>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-            <atom:link href="{{ site.baseUrl}}/{{feed}}" rel="self" type="application/rss+xml" />
+  <title>{{ site.siteTitle }}</title>
+  <link href="{{site.siteBaseUrl}}"/>
+  <author>
+    <name>Adam Stokes</name>
+  </author>
+  <updated>{{updated}}</updated>
+  <id>{{site.siteBaseUrl}}</id>
+  {{#each posts}}
+  <entry>
+    <title>{{this.title}}</title>
+    <link href="{{site.siteBaseUrl}}/{{this.permalink}}"/>
+    <id>{{site.siteBaseUrl}}/{{this.permalink}}</id>
+    <updated>{{this.date}}</updated>
+    <summary>{{md this.md}}</summary>
+  </entry>
+  {{/each}}
 
-            {{#each this}}
-                <item>
-                    <title>{{ this.title }}</title>
-                    <description>{{ this.compiled }}</description>
-                    <pubDate>{{xmldate this.date }}</pubDate>
-                    <link>{{link this.permalink }}</link>
-                    <guid isPermaLink="true">{{link this.permalink }}</guid>
-                </item>
-            {{/each}}
-    </channel>
-</rss>
+</feed>
