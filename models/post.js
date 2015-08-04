@@ -73,5 +73,9 @@ postSchema.virtual("datehumanize").get(function(){
     return moment(this.date).format("MMMM Do YYYY, h:mm a");
 });
 
+postSchema.virtual("datexml").get(function(){
+    return moment(this.date).format("ddd, DD MMM YYYY HH:mm:ss ZZ");
+});
+
 var post = Mongoose.model("post", postSchema);
 module.exports = post;

@@ -8,15 +8,15 @@ var sprintf = require("sprintf-js").sprintf;
 var moment = require("moment");
 var Post = require("./models/post");
 var mongoose = require("mongoose");
-mongoose.connect(sprintf("mongodb://10.0.3.151/astokes"));
+mongoose.connect(sprintf("mongodb://%s/%s", config.db.conn, config.db.name));
 
 server.connection({
-    port: 8080
+    port: config.port
 });
 
 var yarOpts = {
     cookieOptions: {
-        password: "p00b34r",
+        password: config.secret,
         clearInvalid: true,
         isSecure: false
     }
@@ -38,7 +38,7 @@ server.views({
     relativeTo: __dirname,
     path: "./templates",
     context: {
-        site: config
+        site: config.info
     }
 });
 
@@ -93,8 +93,10 @@ server.route({
         var tag = request.params.tag;
         Post.findByTag(tag).sort({date: -1}).execAsync()
             .then(function(posts){
-                var response = reply.view("feed", {posts: posts, updated: posts[0].date}, {layout: false});
+                var response = reply.view("feed", {posts: posts, updated: posts[0].datexml}, {layout: false});
                 response.type("application/xml");
+            }).catch(function(error){
+                throw Error(error);
             });
     }
 });
@@ -116,7 +118,6 @@ server.route({
     method: "POST",
     handler: function(request, reply){
         var searchItem = request.payload.searchInput;
-        console.log(searchItem);
         Post.find({
             $or: [
                 {
@@ -127,7 +128,6 @@ server.route({
                 }]
         }).sort({date: -1}).execAsync()
             .then(function(posts){
-                console.log(posts);
                 reply.view("search", {posts: posts, searchInput: searchItem});
             }).catch(function(error){
                 if (error){
