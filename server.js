@@ -99,6 +99,18 @@ server.route({
     }
 });
 
+server.route({
+    path: "/sitemap.xml",
+    method: "GET",
+    handler: function(request, reply) {
+        Post.find().sort({date: -1}).execAsync()
+            .then(function(posts){
+                var response = reply.view("sitemap", {posts: posts}, {layout: false});
+                response.type("application/xml");
+            });
+    }
+});
+
 
 server.route({
     path: "/archives/{year}",
