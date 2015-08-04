@@ -1,0 +1,8 @@
+extends ./layout/default.jade
+block content
+  .blog-roll
+    h1 Archives
+    - each post in posts
+      h2.article-header
+        a(href="#{post.path}")= post.title
+      span.article-date-pad-left Posted on #{post.datehumanize}

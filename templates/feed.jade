@@ -1,0 +1,15 @@
+doctype xml
+feed(xmlns='http://www.w3.org/2005/Atom')
+  title= site.siteTitle
+  link(href='#{site.siteBaseUrl}')
+  author
+    name Adam Stokes
+  updated= updated
+  id= site.siteBaseUrl
+  - each post in posts
+    entry
+      title= post.title
+      link(href='#{site.siteBaseUrl}#{post.path}')
+      id #{site.siteBaseUrl}#{post.path}
+      updated= post.date
+      summary= post.html

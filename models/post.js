@@ -1,7 +1,11 @@
 "use strict";
 
-var moment = require("moment");
+var Promise = require("bluebird");
 var Mongoose = require("mongoose");
+Promise.promisifyAll(Mongoose);
+var moment = require("moment");
+var markdown = require("marked");
+var sprintf = require("sprintf-js").sprintf;
 
 var postSchema = new Mongoose.Schema({
     title: String,
@@ -15,7 +19,7 @@ var postSchema = new Mongoose.Schema({
 });
 
 postSchema.statics.getUniqueYears = function (){
-    return this.aggregate(
+    return this.aggregateAsync(
         [
             {$match: {
                 "date": {
@@ -33,27 +37,41 @@ postSchema.statics.getUniqueYears = function (){
             {"$sort": {
                 "_id.year": -1
             }}
-        ], function(err, results){
-            if(err){
-                throw Error(err);
-            }
-            return results;
-        });
+        ]);
 };
 
-postSchema.statics.findByYear = function (year, cb){
+postSchema.statics.findByYear = function (year){
     var currentYear = year;
     var nextYear = moment(currentYear).add(1, "years").toDate();
     console.log("Current: %s, Next: %s", currentYear, nextYear);
     return this.find({date: {
         $gte: currentYear,
         $lt: nextYear
-    }}, cb);
+    }});
 };
 
-postSchema.statics.findByTag = function (name, cb){
-    return this.find({tags: new RegExp(name, "i")}, cb);
+postSchema.statics.findByTag = function (name){
+    return this.find({tags: new RegExp(name, "i")});
 };
+
+postSchema.virtual("path").get(function(){
+    var year = moment(this.date).format("YYYY");
+    var month = moment(this.date).format("MM");
+    var day = moment(this.date).format("DD");
+    return sprintf("/blog/%s/%s/%s/%s",
+                   year,
+                   month,
+                   day,
+                   this.slug);
+});
+
+postSchema.virtual("html").get(function(){
+    return markdown(this.md);
+});
+
+postSchema.virtual("datehumanize").get(function(){
+    return moment(this.date).format("MMMM Do YYYY, h:mm a");
+});
 
 var post = Mongoose.model("post", postSchema);
 module.exports = post;

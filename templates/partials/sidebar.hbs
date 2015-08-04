@@ -10,10 +10,5 @@
     <li><a href="http://maas.ubuntu.com">MAAS</a></li>
   </ul>
   <h1>Archives</h1>
-  <ul>
-    {{#each archiveYears}}
-      {{log this}}
-    <li><a href="/archives/{{this._id.year}}">{{this._id.year}}</a></li>
-  {{/each}}
-  </ul>
+  {{print_archive_years}}
 </div>

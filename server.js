@@ -1,5 +1,4 @@
 "use strict";
-var Promise = require("bluebird");
 var Hapi = require("hapi");
 var Good = require("good");
 var config = require("./config");
@@ -34,20 +33,12 @@ server.register({
 
 server.views({
     engines: {
-        hbs: require("handlebars")
+        jade: require("jade")
     },
     relativeTo: __dirname,
     path: "./templates",
-    layoutPath: "./templates/layout",
-    layout: "default",
-    helpersPath: "./templates/helpers",
-    partialsPath: "./templates/partials",
     context: {
-        site: config,
-        archiveYears: Promise.resolve(Post.getUniqueYears()
-                                      .then(function(posts){
-                                          return posts;
-                                      }))
+        site: config
     }
 });
 
@@ -64,9 +55,21 @@ server.route({
     method: "GET",
     handler: function(request, reply) {
         var currentYear = moment().startOf("year").toDate();
-        Post.findByYear(currentYear).sort({date: -1}).exec()
+        var ctx = {};
+        Post.findByYear(currentYear).sort({date: -1}).execAsync()
             .then(function(posts){
-                return reply.view("index", {posts: posts});
+                ctx.posts = posts;
+                return;
+            }).then(function(){
+                return Post.getUniqueYears().then(function(years){
+                    ctx.years = years;
+                });
+            }).then(function(){
+                return reply.view("index", ctx);
+            }).catch(function(error){
+                if (error) {
+                    throw Error(error);
+                }
             });
     }
 });
@@ -76,7 +79,7 @@ server.route({
     method: "GET",
     handler: function(request, reply) {
         var slug = request.params.slug;
-        Post.findOne({"slug": slug}).exec()
+        Post.findOneAsync({"slug": slug})
             .then(function(post){
                 reply.view("post", {post: post});
             });
@@ -88,7 +91,7 @@ server.route({
     method: "GET",
     handler: function(request, reply) {
         var tag = request.params.tag;
-        Post.findByTag(tag).sort({date: -1}).exec()
+        Post.findByTag(tag).sort({date: -1}).execAsync()
             .then(function(posts){
                 var response = reply.view("feed", {posts: posts, updated: posts[0].date}, {layout: false});
                 response.type("application/xml");
@@ -102,9 +105,21 @@ server.route({
     method: "GET",
     handler: function(request, reply) {
         var year = moment(request.params.year + "-01-01").toDate();
-        Post.findByYear(year).exec()
+        var ctx = {};
+        Post.findByYear(year).sort({date: -1}).execAsync()
             .then(function(posts){
-                return reply.view("archives", {posts: posts});
+                ctx.posts = posts;
+                return;
+            }).then(function(){
+                return Post.getUniqueYears().then(function(years){
+                    ctx.years = years;
+                });
+            }).then(function(){
+                return reply.view("archives", ctx);
+            }).catch(function(err){
+                if (err) {
+                    throw Error(err);
+                }
             });
     }
 });
