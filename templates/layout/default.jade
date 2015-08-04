@@ -32,8 +32,10 @@ html
         Content here
       block sidebar
         .sidebar
-          h1 Search
-          input(text="text" name="searchInput")
+          form(method="POST" action="/search")
+            p Search the site
+            input(type="text" name="searchInput")
+            input(type="submit" value="Go!" class="button button-3d button-primary button-rounded button-tiny")
           h1 Current Projects
           ul
             li
