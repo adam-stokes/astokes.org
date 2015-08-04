@@ -1,0 +1,9 @@
+extends ./layout/default.jade
+
+block content
+  .blog-roll
+    h1 Search Results for "#{searchInput}"
+    - each post in posts
+      h2.article-header
+        a(href=post.path)= post.title
+block sidebar

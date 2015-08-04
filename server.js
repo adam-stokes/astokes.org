@@ -79,7 +79,7 @@ server.route({
     method: "GET",
     handler: function(request, reply) {
         var slug = request.params.slug;
-        Post.findOneAsync({"slug": slug})
+        Post.findOne({"slug": slug}).execAsync()
             .then(function(post){
                 reply.view("post", {post: post});
             });
@@ -107,6 +107,32 @@ server.route({
             .then(function(posts){
                 var response = reply.view("sitemap", {posts: posts}, {layout: false});
                 response.type("application/xml");
+            });
+    }
+});
+
+server.route({
+    path: "/search",
+    method: "POST",
+    handler: function(request, reply){
+        var searchItem = request.payload.searchInput;
+        console.log(searchItem);
+        Post.find({
+            $or: [
+                {
+                    title: new RegExp(searchItem, "i")
+                },
+                {
+                    tags: new RegExp(searchItem, "i")
+                }]
+        }).sort({date: -1}).execAsync()
+            .then(function(posts){
+                console.log(posts);
+                reply.view("search", {posts: posts, searchInput: searchItem});
+            }).catch(function(error){
+                if (error){
+                    throw Error(error);
+                }
             });
     }
 });
