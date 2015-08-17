@@ -4,6 +4,7 @@
     "title": "Adam Stokes",
     "description": "inmyrari"
   },
+  "clean": false,
   "plugins": {
     "metalsmith-markdown": {},
     "metalsmith-permalinks": {
@@ -12,6 +13,30 @@
     "metalsmith-layouts": {
       "engine": "jade",
       "directory": "./templates"
+    },
+    "metalsmith-changed": {
+        "extnames": {
+        ".md": ".html"
+        }
+    },
+    "metalsmith-pagination": {
+        "collections.articles": {
+            "perPage": 5,
+            "template": "index.jade",
+            "first": "index.html",
+            "path": "page/:num/index.html",
+            "filter": "private !== true",
+            "pageMetadata": {
+                "title": "Archive"
+            }
+        }
+    },
+    "metalsmith-collections": {
+        "articles": {
+            "sortBy": "date",
+            "reverse": true,
+            "pattern": "*.md"
+        }
     }
   }
 }
