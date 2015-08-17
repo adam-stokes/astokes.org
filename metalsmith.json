@@ -1,0 +1,17 @@
+{
+  "source": "/home/adam/Dropbox/Articles",
+  "metadata": {
+    "title": "Adam Stokes",
+    "description": "inmyrari"
+  },
+  "plugins": {
+    "metalsmith-markdown": {},
+    "metalsmith-permalinks": {
+      "pattern": ":title"
+    },
+    "metalsmith-layouts": {
+      "engine": "jade",
+      "directory": "./templates"
+    }
+  }
+}

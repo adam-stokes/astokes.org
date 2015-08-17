@@ -32,6 +32,22 @@ server.register({
   }
 });
 
+server.register({
+    register: require("vision")
+}, function(err){
+    if(err){
+        throw err;
+    }
+});
+
+server.register({
+    register: require("inert")
+}, function(err){
+    if(err){
+        throw err;
+    }
+});
+
 server.views({
   engines: {
     jade: require("jade")

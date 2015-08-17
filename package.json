@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^2.9.34",
+    "caniuse-db": "^1.0.30000268",
     "expand-tilde": "^1.2.0",
     "fastmatter": "^1.1.0",
     "good": "^6.3.0",

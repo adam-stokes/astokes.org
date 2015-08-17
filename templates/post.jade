@@ -3,22 +3,10 @@ extends ./layout/default.jade
 block content
   section
     article
-      h1.article-header= post.title
+      h1.article-header= title
       | Posted in: 
-      span.article-tags= post.tags
+      span.article-tags= tags
       |  on 
-      span.article-date= post.datehumanize
-      != post.html
-      #disqus_thread
-      script(type='text/javascript').
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'astokes';
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      noscript
-        | Please enable JavaScript to view the 
+      span.article-date= date
+      != contents
 block sidebar
