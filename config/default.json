@@ -1,0 +1,12 @@
+{
+    "host": "localhost",
+    "port": 3000,
+    "database": {
+        "conn": "localhost",
+        "name": "astokes"
+    },
+    "site": {
+        "title": "Adam Stokes",
+        "description": "a blog."
+    }
+}
