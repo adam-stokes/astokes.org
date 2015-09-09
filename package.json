@@ -43,6 +43,8 @@
     "gulp-postcss": "^6.0.0",
     "gulp-rucksack": "^0.1.2",
     "gulp-uglify": "^1.4.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "postcss-scss": "^0.1.2",
+    "precss": "^1.1.2"
   }
 }

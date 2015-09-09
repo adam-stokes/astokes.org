@@ -7,6 +7,7 @@ import minifycss from "gulp-minify-css";
 import concat from "gulp-concat";
 import del from "del";
 import postcss from "gulp-postcss";
+import precss from "precss";
 import cssnext from "cssnext";
 import cssnano from "cssnano";
 import rucksack from "gulp-rucksack";
@@ -19,8 +20,10 @@ let css = [
 
 gulp.task('styles', () => {
     return gulp.src(css)
-        .pipe(postcss([cssnext(),
-                       cssnano()]))
+        .pipe(postcss([
+            precss(),
+            cssnext(),
+            cssnano()]))
         .pipe(rucksack())
         .pipe(minifycss())
         .pipe(concat('main.min.css'))

@@ -1,7 +1,9 @@
 extends ./layout/default.jade
 
 block content
-    h1 Writeups
-    - each post in posts
-      h5
-        a(href="/posts/#{post.permalink}")= post.title
+  section
+    article
+      h1 Writeups
+      - each post in posts
+        h5
+          a(href="/posts/#{post.permalink}")= post.title

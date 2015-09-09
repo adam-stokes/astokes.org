@@ -1,0 +1,10 @@
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: responsive;
+}
+
+article {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
