@@ -1,9 +1,7 @@
 extends ./layout/default.jade
 
 block content
-  .blog-roll
-    h1 Bloggo
+    h1 Writeups
     - each post in posts
-      h2.article-header
-        a(href=post.path)= post.title
-      span(class="article-date-pad-left") Posted on #{post.datehumanize}
+      h5
+        a(href="/posts/#{post.permalink}")= post.title

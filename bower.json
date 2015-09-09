@@ -15,10 +15,8 @@
     "tests"
   ],
   "devDependencies": {
-    "jquery": "~2.1.4",
-    "flowtype": "~1.1.0",
     "highlightjs": "~8.5.0",
-    "Buttons": "~2.0.0",
-    "font-awesome": "~4.4.0"
+    "jquery": "~2.1.4",
+    "normalize-css": "normalize.css#~3.0.3"
   }
 }

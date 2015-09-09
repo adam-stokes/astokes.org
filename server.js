@@ -2,16 +2,10 @@
 import Hapi from "hapi";
 import Config from "getconfig";
 import Good from "good";
-import { sprintf } from "sprintf-js";
-import Mongoose from "mongoose";
 import Jade from "jade";
 import Inert from "inert";
 import Vision from "vision";
 import routes from "./lib/routes";
-
-Mongoose.connect(sprintf("mongodb://%s/%s",
-                         Config.database.conn,
-                         Config.database.name));
 
 let serverConfig = {};
 let server = new Hapi.Server(serverConfig);

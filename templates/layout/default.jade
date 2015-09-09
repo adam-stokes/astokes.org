@@ -9,7 +9,6 @@ html
     meta(name='viewport', content='width=device-width')
     meta(name="google-site-verification" content="uLZWtK1cT3BMEiGVkTlTc9yenYL4WO9xVumIQqHnzZQ")
     link(href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700', rel='stylesheet', type='text/css')
-    link(href='http://fonts.googleapis.com/css?family=Architects+Daughter', rel='stylesheet', type='text/css')
     link(rel='stylesheet', type='text/css', href='/static/css/main.min.css')
     script(src='/static/js/main.min.js')
     script.
@@ -32,10 +31,6 @@ html
         Content here
       block sidebar
         .sidebar
-          form(method="POST" action="/search")
-            p Search the site
-            input(type="text" name="searchInput")
-            input(type="submit" value="Go!" class="button button-3d button-primary button-rounded button-tiny")
           h1 Current Projects
           ul
             li
@@ -48,10 +43,5 @@ html
               a(href='http://jujucharms.com') Juju
             li
               a(href='http://maas.ubuntu.com') MAAS
-          h1 Archives
-          ul
-            - each item in years
-              li
-                a(href="/archives/#{item._id.year}")= item._id.year
 
     block footer
