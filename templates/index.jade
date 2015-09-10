@@ -2,8 +2,15 @@ extends ./layout/default.jade
 
 block content
   section
-    article
-      h1 Writeups
-      - each post in posts
-        h5
-          a(href="/posts/#{post.permalink}")= post.title
+    h1 Current Projects
+    ul
+      li
+        a(href='http://openstack.astokes.org') Ubuntu OpenStack Installer
+      li
+        a(href='https://github.com/sosreport/sos') SOSreport
+    h1 Resources
+    ul
+      li
+        a(href='http://jujucharms.com') Juju
+      li
+        a(href='http://maas.ubuntu.com') MAAS

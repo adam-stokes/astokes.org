@@ -16,32 +16,16 @@ html
     title= title
   body
     block header
-      .container
-        #header
-          .logo
-            img(src='/static/images/logo.png')
-          .menu
-            a.button.button-3d.button-primary.button-rounded.button-tiny(href='/') Home
-          .blurb
-            | Adam Stokes
-            br
-            | Bumblebee Tuna
+      section
+        a.button.button-flat.button-primary(href='/') Home
+        a.button.button-flat.button-primary(href='/posts') Articles
+        p
+          | Adam Stokes
+          br
+          | Bumblebee Tuna
     .container
       block content
         Content here
       block sidebar
-        .sidebar
-          h1 Current Projects
-          ul
-            li
-              a(href='http://openstack.astokes.org') Ubuntu OpenStack Installer
-            li
-              a(href='https://github.com/sosreport/sos') SOSreport
-          h1 Resources
-          ul
-            li
-              a(href='http://jujucharms.com') Juju
-            li
-              a(href='http://maas.ubuntu.com') MAAS
 
     block footer

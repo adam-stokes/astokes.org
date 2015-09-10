@@ -1,1 +1,12 @@
-@import "partials/base";
+$base-font: "Source Sans Pro", sans-serif;
+
+body {
+    font-family: $base-font;
+    font-size: responsive;
+}
+
+section {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
