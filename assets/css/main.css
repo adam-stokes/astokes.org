@@ -2,11 +2,25 @@ $base-font: "Source Sans Pro", sans-serif;
 
 body {
     font-family: $base-font;
-    font-size: responsive;
+    font-size: responsive 12px 21px;
+}
+
+a {
+    @link-colors #0066ac {
+        hover: #0093f9;
+    }
 }
 
 section {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+article.posts {
+    column-width: 20em;
+    column-gap: 2em;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    column-rule-color: lightblue;
 }
