@@ -5,16 +5,15 @@ featured: openstack.png
 tags: ubuntu, openstack, juju
 template: single.hbs
 ---
-
-# Overview
+## Overview
 
 Sometimes our default constraints for a Single Installation isn't enough. With our latest release it is possible to now configure the service placements with custom constraints.
 
 Below is a fully working config example that you can modify to suit your hardware:
 
-## Example
+### Example
 
-```yaml
+```
 install_type: Single
 placements:
   controller:
