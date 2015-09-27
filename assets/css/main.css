@@ -3,6 +3,7 @@ $base-font: "Source Sans Pro", sans-serif;
 body {
     font-family: $base-font;
     font-size: responsive 12px 21px;
+    background-color: #fcfcfc;
 }
 
 a {
